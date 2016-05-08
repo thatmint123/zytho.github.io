@@ -1,44 +1,160 @@
-<!doctype html>
 <html>
-	<head>
-		<title>home</title>
+    
+    <head>
+        
+        <link href="style.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
+        <title>StartPage</title>
+        
+    </head>
+    
+    <body onload="loadColors();">
+        
+        <span>
+        
+            <h1>WELCOME TO</h1>
+            <h2>THE INTERNET</h2>
+            <img src="sun.gif" class="sun">
 
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+            <div class="container" id="main">
 
-		<link rel="stylesheet" href="main.css">
-	</head>
+                <div class="category">
 
-	<body>
-		<main>
-            <h1>Home</h1>
-            <hr>
-            <ul>
-              <li>General</li>
-                <li><a href="https://www.youtube.com/feed/subscriptions">youtube</a></li>
-				<li><a href="https://twitch.tv">twitch</a></li>
-				<li><a href="http://192.168.0.1/">router settings</a></li>
-            </ul>
-            <hr>
-            <ul>
-              <li>4chan</li>
-                <li><a href="https://4chan.org/g/">/g/</a></li>
-                <li><a href="https://4chan.org/v/">/v/</a></li>
-				<li><a href="https://4chan.org/mu/">/mu/</a></li>
-				<li><a href="https://4chan.org/tv/">/tv/</a></li>
-            </ul>
-            <hr>
-            <ul>
-              <li>Piracy</li>
-				<li><a href="https://what.cd">what</a></li>
-                <li><a href="https://www.morethan.tv/">morethan</a></li>
-				<li><a href="https://thekat.tv/">kat</a></li>
-            </ul>
-            <hr>
-            <ul>
-              <li>Reddit</li>
-                <li><a href="https://reddit.com">frontpage</a></li>
-				<li><a href="https://www.reddit.com/r/diablo">diablo</a></li>
-            </ul>
-		</main>
-	</body>
+                    <h3>4chan</h3>
+                    <a href="https://boards.4chan.org/v/">/v/</a>
+					<a href="https://boards.4chan.org/tv/">/tv/</a>
+					<a href="https://boards.4chan.org/g/">/g/</a>
+					<a href="https://boards.4chan.org/mu/">/mu/</a>
+                </div>
+
+                <div class="category">
+
+                    <h3>Social</h3>
+
+                    <a href="https://facebook.com/">facebook</a>
+                    <a href="https://twitter.com/">twitter</a>
+                    <a href="https://www.youtube.com/feed/subscriptions">youtube</a>
+                    <a href="https://twitch.tv/">twitch</a>
+                    <a href="https://discordapp.com/channels/@me">discord</a>
+                    <a href="https://gmail.com/">gmail</a>
+
+                </div>
+
+                <div class="category">
+
+                    <h3>Bits</h3>
+
+               
+                    <a href="https://what.cd/">what</a>
+                    <a href="https://www.morethan.tv/">morethan</a>
+					<a href="https://thekat.tv/">kat</a>
+                    <a href="https://thepiratebay.se/">tbp</a>
+
+                </div>
+
+                <div class="category">
+
+                    <h3>Gaming</h3>
+
+                    <a href="http://www.icy-veins.com/d3/">Icy-Veins</a>
+
+                </div>
+
+                <div class="category">
+
+                    <h3>Reddit</h3>
+
+                    <a href="https://www.reddit.com/">frontpage</a>
+                    <a href="https://www.reddit.com/r/trackers/">trackers</a>
+					<a href="https://www.reddit.com/r/diablo">diablo</a>
+					<a href="https://www.reddit.com/r/pcgaming">pcgaming</a>
+					<a href="https://www.reddit.com/r/hiphopheads">hhh</a>
+
+                </div>
+
+            </div>
+
+            <div class="container" id="second" style="display:none;">
+
+                <div class="category" style="height: 0px;">
+
+                </div>
+
+                <div class="category">
+
+                    <h3>Settings</h3>
+
+                    <input type="range" min="0" max="360" value="0" oninput="changeHue(this.value);">
+                    <input type="range" min="0" max="200" value="100" oninput="changeSat(this.value);">
+                    <input type="range" min="50" max="150" value="100" oninput="changeCon(this.value);">
+
+                </div>
+
+            </div>
+
+            <label id="one" onclick="showMain();"></label>
+            <label id="two" onclick="showSecond();"></label>
+        </span>
+        <script>
+            
+            var hue;
+            var sat;
+            var con;
+            
+            function loadColors() {
+                var ck = document.cookie.split("; ");
+                
+                changeHue(getCookie('hue'));
+                changeSat(getCookie('sat'));
+                changeCon(getCookie('con'));
+                
+                document.getElementsByTagName("input")[0].value = getCookie('hue');
+                document.getElementsByTagName("input")[1].value = getCookie('sat');
+                document.getElementsByTagName("input")[2].value = getCookie('con');
+                
+            }
+            
+            function getCookie(name) {
+                var value = "; " + document.cookie;
+                var parts = value.split("; " + name + "=");
+                if (parts.length == 2) return parts.pop().split(";").shift();
+            }
+            
+            function setCookie(name, value) {
+                document.cookie = name + "=" + value + "; path=/";
+            }
+            
+            function changeHue(value){
+                setCookie('hue', value);
+                document.getElementsByTagName("body")[0].style.webkitFilter = "hue-rotate("+value+"deg)";
+            }
+            
+            function changeSat(value){
+                setCookie('sat', value);
+                document.getElementsByTagName("html")[0].style.webkitFilter = "saturate("+value+"%)";
+            }
+            
+            function changeCon(value){
+                setCookie('con', value);
+                document.getElementsByTagName("span")[0].style.webkitFilter = "contrast("+value+"%)";
+            }
+            
+            function showMain() {
+                document.getElementById("one").style.border = "3px solid #43FDCA";
+                document.getElementById("two").style.border = "3px solid #EFCBA7";
+                document.getElementById("main").style.display = "inline";
+                document.getElementById("second").style.display = "none";
+            }
+            
+            function showSecond() {
+                document.getElementById("one").style.border = "3px solid #EFCBA7";
+                document.getElementById("two").style.border = "3px solid #43FDCA";
+                document.getElementById("main").style.display = "none";
+                document.getElementById("second").style.display = "inline";   
+            }
+            
+        </script>
+        
+    </body>
+    
 </html>
