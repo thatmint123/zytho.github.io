@@ -1,11 +1,43 @@
 <!doctype html>
 <html lang="en">
 <head>
+<style>
+.mdl-layout {
+  align-items: center;
+  justify-content: center;
+}
+</style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
 <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 </head>
 <body>
-<p> test </p>
+<div class="mdl-layout">
+  <button id="demo-show-snackbar" class="mdl-button mdl-js-button mdl-button--raised" type="button">Please</button>
+<div id="demo-snackbar-example" class="mdl-js-snackbar mdl-snackbar">
+  <div class="mdl-snackbar__text"></div>
+  <button class="mdl-snackbar__action" type="button"></button>
+</div>
+<script>
+(function() {
+  'use strict';
+  var snackbarContainer = document.querySelector('#demo-snackbar-example');
+  var showSnackbarButton = document.querySelector('#demo-show-snackbar');
+  var handler = function(event) {
+    showSnackbarButton.style.backgroundColor = '';
+  };
+  showSnackbarButton.addEventListener('click', function() {
+    'use strict';
+    var data = {
+      message: 'Kill yourself',
+      timeout: 2000,
+      actionHandler: handler,
+      actionText: 'now'
+    };
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+  });
+}());
+</script>
+</div>
 </body>
 </html>
